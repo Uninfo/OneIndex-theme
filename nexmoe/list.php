@@ -77,26 +77,26 @@ function file_ico($item){
 		  	</a>
 		</li>
 		<?php endif;?>
-		
+
 		<?php foreach((array)$items as $item):?>
 			<?php if(!empty($item['folder'])):?>
 
-		<li class="mdui-list-item mdui-ripple">
+		<li class="mdui-list-item mdui-ripple" data-sort data-sort-name="<?php e($item['name']);?>" data-sort-date="<?php echo $item['lastModifiedDateTime'];?>" data-sort-size="<?php echo $item['size'];?>">
 			<a href="<?php echo get_absolute_path($root.$path.rawurlencode($item['name']));?>">
 			  <div class="mdui-col-xs-12 mdui-col-sm-7 mdui-text-truncate">
 				<i class="mdui-icon material-icons">folder_open</i>
-		    	<span><?php e($item['name']);?></span>
+		    	<?php e($item['name']);?>
 			  </div>
 			  <div class="mdui-col-sm-3 mdui-text-right"><?php echo date("Y-m-d H:i:s", $item['lastModifiedDateTime']);?></div>
 			  <div class="mdui-col-sm-2 mdui-text-right"><?php echo onedrive::human_filesize($item['size']);?></div>
 		  	</a>
 		</li>
 			<?php else:?>
-		<li class="mdui-list-item file mdui-ripple">
+		<li class="mdui-list-item file mdui-ripple" data-sort data-sort-name="<?php e($item['name']);?>" data-sort-date="<?php echo $item['lastModifiedDateTime'];?>" data-sort-size="<?php echo $item['size'];?>">
 			<a href="<?php echo get_absolute_path($root.$path).rawurlencode($item['name']);?>" target="_blank">
 			  <div class="mdui-col-xs-12 mdui-col-sm-7 mdui-text-truncate">
 				<i class="mdui-icon material-icons"><?php echo file_ico($item);?></i>
-		    	<span><?php e($item['name']);?></span>
+		    	<?php e($item['name']);?>
 			  </div>
 			  <div class="mdui-col-sm-3 mdui-text-right"><?php echo date("Y-m-d H:i:s", $item['lastModifiedDateTime']);?></div>
 			  <div class="mdui-col-sm-2 mdui-text-right"><?php echo onedrive::human_filesize($item['size']);?></div>
@@ -106,16 +106,13 @@ function file_ico($item){
 		<?php endforeach;?>
 	</ul>
 </div>
-</div>
 <?php if($readme):?>
-<div class="nexmoe-item">
-	<div class="mdui-typo" style="padding: 20px;">
-		<div class="mdui-chip">
-		  <span class="mdui-chip-icon"><i class="mdui-icon material-icons">face</i></span>
-		  <span class="mdui-chip-title">README.md</span>
-		</div>
-		<?php e($readme);?>
+<div class="mdui-typo mdui-shadow-3" style="padding: 20px;margin: 20px 0;">
+	<div class="mdui-chip">
+	  <span class="mdui-chip-icon"><i class="mdui-icon material-icons">face</i></span>
+	  <span class="mdui-chip-title">README.md</span>
 	</div>
+	<?php e($readme);?>
 </div>
 <?php endif;?>
 </div>
